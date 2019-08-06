@@ -1,13 +1,14 @@
 const express = require('express')
 const router = express.Router()
 
-router.get('/',(req,res) => {
-        res.send(`Passando parametro ${req.query.name}`)
-})
+const DevController = require('./controllers/DevController')
+const LikeController = require('./controllers/LikeController')
+const DeslikeController = require('./controllers/DeslikeController')
 
-router.post('/devs',({ body },res) => {
-    console.log(body)
-    res.status(200).send({ ok:true, body })
-})
+
+router.get('/devs',DevController.index)
+router.post('/devs',DevController.store)
+router.post('/devs/:devId/likes',LikeController.store)
+router.post('/devs/:devId/deslikes',DeslikeController.store)
 
 module.exports = router

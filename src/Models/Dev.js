@@ -13,9 +13,17 @@ const devSchema = new Schema({
    avatar:{
        type:String,
        required:true
-   }
+   },
+   likes:[{
+       type:Schema.Types.ObjectId,
+       ref:'Dev'
+   }],
+   deslikes:[{
+    type:Schema.Types.ObjectId,
+    ref:'Dev'
+}]
 },{
     timestamps:true
 })
 
-module.exports = model.Schema('Dev',devSchema)
+module.exports = model('Dev',devSchema)
